@@ -8,7 +8,7 @@ struct timeval current_time;
 void Sleep(int msec)
 {
     unsigned long t = TimeNowMSec(); 
-    while (TimeNowMSec() - t < msec) {
+    while (TimeNowMSec() - t < (unsigned long) msec) {
         LCD.Update();
     }
 }

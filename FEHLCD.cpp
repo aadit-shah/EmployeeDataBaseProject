@@ -174,12 +174,12 @@ bool FEHLCD::Touch(float *x_pos, float *y_pos)
 
 bool FEHLCD::Touch(int *x_pos, int *y_pos)
 {
+    Update();
+
     int mouseButton;
     tigrMouse(screen, x_pos, y_pos, &mouseButton);
 
-    Update();
-
-    return mouseButton & 0x01 == 1;
+    return (mouseButton & 0x01) == 1;
 }
 
 void FEHLCD::ClearBuffer()
@@ -764,7 +764,7 @@ void FEHLCD::WriteCharAt(int x, int y, char c)
         for (int row = 0; row < 7; row++)
         {
             // If the current pixel is a 1 in the fontData bitmap
-            if ((charData[col] >> row) & 0x01 == 1)
+            if (((charData[col] >> row) & 0x01) == 1)
             {
                 // Draw a 2x2 rectangle to represent each pixel since sizes are doubled
                 FillRectangle(x + col * 2, y + row * 2, 2, 2);
@@ -992,7 +992,7 @@ namespace FEHIcon
             sprintf(label, "-%d.%03d", d, r);
         }
         /* If the new label is not the same length as the old one, then erase the old one so that it does not show up behind the new one */
-        if (strlen(label) != length_i)
+        if ((int) strlen(label) != length_i)
         {
             LCD.SetFontColor(BLACK);
             LCD.FillRectangle(x_start + 1, y_start + 1, width - 2, height - 2);
@@ -1009,7 +1009,7 @@ namespace FEHIcon
         sprintf(label, "%d", val);
 
         /* If the new label is not the same length as the old one, then erase the old one so that it does not show up behind the new one */
-        if (strlen(label) != length_i)
+        if ((int) strlen(label) != length_i)
         {
             LCD.SetFontColor(BLACK);
             LCD.FillRectangle(x_start + 1, y_start + 1, width - 2, height - 2);

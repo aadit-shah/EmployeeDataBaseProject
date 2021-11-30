@@ -68,7 +68,7 @@ int FEHSD::FClose(FEHFile *fptr)
 
 int FEHSD::FCloseAll()
 {
-    int retVal;
+    int retVal = 0;
 
     // Closes any non-null file pointer in filePtrs
     for (int i = 0; i < SD.numberOfFiles; i++)
