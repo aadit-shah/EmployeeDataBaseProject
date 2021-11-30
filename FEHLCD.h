@@ -141,10 +141,10 @@ private:
     int _currentchar;
     unsigned int _forecolor;
     unsigned int _backcolor;
-    RegisterColorValues foreRegisterValues, backRegisterValues;
+    // RegisterColorValues foreRegisterValues, backRegisterValues;
 
-    int lastx;
-    int lasty;
+    // int lastx;
+    // int lasty;
 
     static unsigned char fontData[];
 };
